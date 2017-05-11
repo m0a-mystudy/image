@@ -1,0 +1,81 @@
+
+
+# Formatについて
+# 色情報ごとに以下のように記述する
+
+# [[colors]]
+#   name = "色のパターン名を入れる"
+#                  必ずrgbを指定すること
+#   [colors.red]
+#     start = 0   # 0〜255の範囲の値を設定する
+#     end = 255   # 判定基準は start以上 end以下となる
+#   [colors.blue]
+#     start = 200
+#     end = 255
+#   [colors.green]
+#     start = 200
+#     end = 255
+
+
+# ヒント:
+# 上から順に評価していくので多少値の範囲がかぶってもかまわない。
+# 優先順位が高い順に並べる 下記の場合は白系が最優先になっている
+[[colors]]
+  name = "白系"
+  [colors.red]
+    start = 200
+    end = 255
+  [colors.blue]
+    start = 200
+    end = 255
+  [colors.green]
+    start = 200
+    end = 255
+[[colors]]
+  name = "赤系"
+  [colors.red]
+    start = 30
+    end = 255
+  [colors.blue]
+    start = 0
+    end = 0
+  [colors.green]
+    start = 0
+    end = 0
+
+[[colors]]
+  name = "青系"
+  [colors.red]
+    start = 0
+    end = 0
+  [colors.blue]
+    start = 30
+    end = 255
+  [colors.green]
+    start = 0
+    end = 0
+
+[[colors]]
+  name = "緑系"
+  [colors.red]
+    start = 0
+    end = 0
+  [colors.blue]
+    start = 0
+    end = 0
+  [colors.green]
+    start = 30
+    end = 255
+
+[[colors]]
+  name = "黒系"
+  [colors.red]
+    start = 0
+    end = 30
+  [colors.blue]
+    start = 0
+    end = 30
+  [colors.green]
+    start = 0
+    end = 30
+

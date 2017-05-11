@@ -1,0 +1,6 @@
+hash: 990b38a3d476e14fa3f47984f64d964977a904079a1d3ceda62dbb9c09770c8c
+updated: 2017-05-11T08:09:03.584133366+09:00
+imports:
+- name: github.com/BurntSushi/toml
+  version: b26d9c308763d68093482582cea63d69be07a0f0
+testImports: []

@@ -1,0 +1,4 @@
+package: github.com/m0a-mystudy/image
+import:
+- package: github.com/BurntSushi/toml
+  version: ^0.3.0
