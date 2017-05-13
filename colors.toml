@@ -79,3 +79,15 @@
     start = 0
     end = 30
 
+
+[[colors]]
+  name = "それ以外"
+  [colors.red]
+    start = 0
+    end = 255
+  [colors.blue]
+    start = 0
+    end = 255
+  [colors.green]
+    start = 0
+    end = 255

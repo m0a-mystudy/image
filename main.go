@@ -55,13 +55,19 @@ type Patterns struct {
 	Total    int
 }
 
-func (patterns Patterns) csvFormat() []string {
+func (patterns Patterns) csvFormat(colors []Color) []string {
 	ret := []string{}
 	ret = append(ret, patterns.FileName)
-	for _, count := range patterns.Count {
+
+	for _, color := range colors {
+		count := patterns.Count[color.Name]
 		result := float64(count) / float64(patterns.Total)
 		ret = append(ret, fmt.Sprintf("%.4f%%", result*100.0))
 	}
+	// for _, count := range patterns.Count {
+	// 	result := float64(count) / float64(patterns.Total)
+	// 	ret = append(ret, fmt.Sprintf("%.4f%%", result*100.0))
+	// }
 	return ret
 }
 
@@ -75,6 +81,11 @@ func (config Config) csvFormat() []string {
 
 func detect(color color.Color, config Color) bool {
 	r, g, b, _ := color.RGBA()
+	r /= 256
+	g /= 256
+	b /= 256
+	// fmt.Printf("rgb=(%d,%d,%d)\n", r, g, b)
+
 	if r < config.Red.Start || r > config.Red.End {
 		return false
 	}
@@ -100,7 +111,9 @@ func imageDetector(fileName string, img image.Image, config Config) Patterns {
 		for j := 0; j < rect.Max.X; j++ {
 			patterns.Total++
 			for _, v := range config.Colors {
+				// fmt.Println("color = ", v.Name)
 				if detect(img.At(j, i), v) {
+					// fmt.Printf("%d,%d detect %s\n", j, i, v.Name)
 					patterns.Count[v.Name]++
 					break
 				}
@@ -128,7 +141,7 @@ func createWalker(config Config, writer *csv.Writer) filepath.WalkFunc {
 			img, _, _ := image.Decode(file)
 			p := imageDetector(path, img, config)
 			fmt.Println(p)
-			writer.Write(p.csvFormat())
+			writer.Write(p.csvFormat(config.Colors))
 		}
 		return nil
 	}
